@@ -1,15 +1,64 @@
 .miniCart {
     width: 325px;
+    padding: 15px;
+    margin-top: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    position: absolute;
 
     .miniCartTitle {
-        
+        margin-bottom: 25px;
+
         p {
-            font-size: 16px;
             font-weight: 700;
 
             span {
                 font-weight: 500;
+                
             }
+        }
+    }
+
+    .miniCartTotal {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 35px;
+
+        .total {
+            font-weight: 500;
+            
+        }
+
+        .price {
+            font-weight: 700;
+        }
+    }
+
+    .miniCartButtons {
+        height: 43px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    
+        .viewBag {
+            flex-grow: 1;
+            margin-right: 12px;
+            background: transparent;
+            border: 1px solid black;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .checkout {
+            flex-grow: 1;
+            border: none;
+            background-color: #5ECE7B;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
         }
     }
 }

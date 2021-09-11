@@ -6,12 +6,21 @@ class Layout extends Component {
   constructor() {
     super();
     this.state = {
-      category: "women"
+      category: "Women",
+      miniCart: false
     }
   }
 
   updateCategory(props) {
     this.setState({category: props})
+  }
+
+  showMiniCart() {
+    if (this.state.miniCart === false) {
+      this.setState({miniCart: true})
+    } else {
+      this.setState({ miniCart: false });
+    }
   }
 
   render() {
@@ -21,31 +30,31 @@ class Layout extends Component {
             <div className="categories">
               <button
                 className={
-                  this.state.category === "women"
+                  this.state.category === "Women"
                     ? "selectedCategory"
                     : "category"
                 }
-                onClick={() => this.updateCategory("women")}
+                onClick={() => this.updateCategory("Women")}
               >
                 WOMEN
               </button>
               <button
                 className={
-                  this.state.category === "men"
+                  this.state.category === "Men"
                     ? "selectedCategory"
                     : "category"
                 }
-                onClick={() => this.updateCategory("men")}
+                onClick={() => this.updateCategory("Men")}
               >
                 MEN
               </button>
               <button
                 className={
-                  this.state.category === "kids"
+                  this.state.category === "Kids"
                     ? "selectedCategory"
                     : "category"
                 }
-                onClick={() => this.updateCategory("kids")}
+                onClick={() => this.updateCategory("Kids")}
               >
                 KIDS
               </button>
@@ -59,10 +68,19 @@ class Layout extends Component {
                 <option value="saab">€ EUR</option>
                 <option value="mercedes">¥ JPY</option>
               </select>
-              <img src="./images/Empty Cart.png" alt="cart" className="cart" />
+              <img
+                src="./images/Empty Cart.png"
+                alt="cart"
+                className="cart"
+                onClick={() => this.showMiniCart()}
+              />
             </div>
           </nav>
-          <MiniCart />
+          {this.state.miniCart && <MiniCart />}
+          <div>
+            <h1 className="categoryTitle">{this.state.category}</h1>
+            <div className="cards"></div>
+          </div>
         </div>
       );
   }
