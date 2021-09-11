@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MiniCart from "../MiniCart/MiniCart"
 import ProductCard from "../ProductCard/ProductCard"
 import ProductPage from "../ProductPage/ProductPage"
+import Cart from "../Cart/Cart"
 import "./Layout.scss"
 
 class Layout extends Component {
@@ -80,7 +81,7 @@ class Layout extends Component {
           </nav>
           {this.state.miniCart && <MiniCart />}
           <div>
-            <ProductPage />
+            <Cart />
             {/* <h1 className="categoryTitle">{this.state.category}</h1>
             <div className="cards">
               

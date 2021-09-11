@@ -1,38 +1,44 @@
-.miniCartItem {
+.cartItem {
+    height: 225px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 35px;
+    border-top: 1px solid rgba(187, 187, 187, 0.5);
+    padding-top: 20px;
     
-    .miniCartItemInfo {
+    .cartItemInfo {
         width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        .miniNameAndPrice {
-            height: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            .miniCartItemPrice {
-                font-weight: 500;
-            }
+        .cartItemName {
+            font-size: 30px;
+            font-weight: 600;
         }
 
-        .miniSizeButtons {
+        .cartItemName2 {
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        .cartItemPrice {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sizeButtons {
             .size {
                 margin-right: 8px;
             }
         }
     }
 
-    .miniQuantityAndImage {
+    .quantityAndImage {
         display: flex;
         flex-direction: row;
 
-        .miniQuantity {
+        .quantity {
             margin-right: 18px;
             display: flex;
             flex-direction: column;
@@ -41,9 +47,9 @@
         }
     }
 
-    .miniSmallButton {
-        height: 24px;
-        width: 24px;
+    .smallButton {
+        height: 45px;
+        width: 45px;
         background: transparent;
         border: 1px solid black;
         font-size: 16px;
