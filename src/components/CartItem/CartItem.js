@@ -31,8 +31,8 @@ class CartItem extends Component {
             <p className="cartItemName2">Running Short</p>
             <p className="cartItemPrice">$50.00</p>
           <div className="sizeButtons">
-            <button className="smallButton size">S</button>
-            <button className="smallButton">M</button>
+            <button className="smallButtonSize">S</button>
+            <button className="smallButtonSize">M</button>
           </div>
         </div>
         <div className="quantityAndImage">

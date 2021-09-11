@@ -2,6 +2,16 @@
     height: 444px;
     width: 386px;
     padding: 16px;
+    margin-bottom: 100px;
+    position: relative;
+
+    .circleIcon {
+        position: absolute;
+        bottom: 55px;
+        right: 20px;
+        display: none;
+
+    }
 
     .productTitle {
         margin-top: 24px;
@@ -12,5 +22,14 @@
     .productPrice {
         font-size: 18px;
         font-weight: 500;
+        margin-top: 8px;
+    }
+
+    &:hover {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        .circleIcon {
+            display: block;
+        }
     }
 }

@@ -5,13 +5,17 @@ import "./Cart.scss"
 class Cart extends Component {
     render() {
         return (
-            <div className="cartContainer">
-                <h2 className="cart">CART</h2>
-                <div className="cartItemContainer">
-                    <CartItem />
-                </div>
+          <div className="cartContainer">
+            <h2 className="cart">CART</h2>
+            <div className="cartItemContainer">
+              <CartItem />
+              <CartItem />
+              <CartItem />
+              <CartItem />
+              
             </div>
-        )
+          </div>
+        );
     }
 }
 

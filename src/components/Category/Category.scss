@@ -1,0 +1,14 @@
+.categoryContainer {
+
+    .categoryTitle {
+        font-size: 42px;
+        font-weight: 400;
+        margin-top: 80px;
+    }
+
+    .cards {
+        margin-top: 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
