@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MiniCart from "../MiniCart/MiniCart"
+import ProductCard from "../ProductCard/ProductCard"
 import "./Layout.scss"
 
 class Layout extends Component {
@@ -79,7 +80,12 @@ class Layout extends Component {
           {this.state.miniCart && <MiniCart />}
           <div>
             <h1 className="categoryTitle">{this.state.category}</h1>
-            <div className="cards"></div>
+            <div className="cards">
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+              <ProductCard />
+            </div>
           </div>
         </div>
       );

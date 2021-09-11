@@ -1,0 +1,16 @@
+.cardContainer {
+    height: 444px;
+    width: 386px;
+    padding: 16px;
+
+    .productTitle {
+        margin-top: 24px;
+        font-size: 18px;
+        font-weight: 300;
+    }
+
+    .productPrice {
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
