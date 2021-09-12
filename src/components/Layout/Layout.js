@@ -3,6 +3,7 @@ import MiniCart from "../MiniCart/MiniCart"
 import ProductPage from "../ProductPage/ProductPage"
 import Cart from "../Cart/Cart"
 import Category from "../Category/Category"
+import Nav from "../Nav/Nav"
 import "./Layout.scss"
 
 class Layout extends Component {
@@ -14,11 +15,11 @@ class Layout extends Component {
     }
   }
 
-  updateCategory(props) {
+  updateCategory = (props) => {
     this.setState({category: props})
   }
 
-  showMiniCart() {
+  showMiniCart = () => {
     if (this.state.miniCart === false) {
       this.setState({miniCart: true})
     } else {
@@ -29,58 +30,14 @@ class Layout extends Component {
   render() {
       return (
         <div className="container">
-          <nav>
-            <div className="categories">
-              <button
-                className={
-                  this.state.category === "Women"
-                    ? "selectedCategory"
-                    : "category"
-                }
-                onClick={() => this.updateCategory("Women")}
-              >
-                WOMEN
-              </button>
-              <button
-                className={
-                  this.state.category === "Men"
-                    ? "selectedCategory"
-                    : "category"
-                }
-                onClick={() => this.updateCategory("Men")}
-              >
-                MEN
-              </button>
-              <button
-                className={
-                  this.state.category === "Kids"
-                    ? "selectedCategory"
-                    : "category"
-                }
-                onClick={() => this.updateCategory("Kids")}
-              >
-                KIDS
-              </button>
-            </div>
-            <div className="logoContainer">
-              <img src="./images/a-logo.png" alt="logo" />
-            </div>
-            <div className="currencyAndCart">
-              <select className="currencies">
-                <option value="volvo">$ USD</option>
-                <option value="saab">€ EUR</option>
-                <option value="mercedes">¥ JPY</option>
-              </select>
-              <img
-                src="./images/Empty Cart.png"
-                alt="cart"
-                className="cart"
-                onClick={() => this.showMiniCart()}
-              />
-            </div>
-          </nav>
+          <Nav
+            updateCategory={this.updateCategory}
+            showMiniCart={this.showMiniCart}
+            category={this.state.category}
+          />
           {this.state.miniCart && <MiniCart />}
-          <Category category={this.state.category}/>
+          {/* <Category category={this.state.category}/> */}
+          <Cart />
         </div>
       );
   }
