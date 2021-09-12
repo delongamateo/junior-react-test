@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MiniCartItem from "../MiniCartItem/MiniCartItem"
+import { Link } from "react-router-dom"
 import "./MiniCart.scss";
 
 class MiniCart extends Component {
@@ -18,7 +19,7 @@ class MiniCart extends Component {
               <p className="price">$100.00</p>
             </div>
             <div className="miniCartButtons">
-              <button className="viewBag">VIEW BAG</button>
+              <Link to="/cart" className="viewBag" onClick={() => {this.props.showMiniCart()}}>VIEW BAG</Link>
               <button className="checkout">CHECK OUT</button>
             </div>
           </div>

@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./ProductCard.scss"
 
 class ProductCard extends Component {
 
     render() {
         return (
-            <div className="cardContainer">
+            <Link to="/productpage" className="cardContainer">
                 <img src="./images/Product D2.png" />
                 <img src="./images/Circle Icon.png" className="circleIcon"/>
                 <p className="productTitle">Apollo Running Short</p>
                 <p className="productPrice">$50.00</p>
-            </div>
+            </Link>
         )
     }
 }

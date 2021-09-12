@@ -6,13 +6,11 @@ class ProductPage extends Component {
     return (
       <div className="productContainer">
         <div className="sideImages">
-          <img src="./images/Product D (1).png" />
-          <img src="./images/Product D (1).png" />
-          <img src="./images/Product D (1).png" />
+          <img src="./images/Product D (1).png" className="sideImage" />
+          <img src="./images/Product D (1).png" className="sideImage" />
+          <img src="./images/Product D (1).png" className="sideImage" />
         </div>
-        <div className="imageContainer">
-          <img src="./images/Product D2.png" />
-        </div>
+        <img src="./images/Product D2.png" className="productImage" />
         <div className="productDetails">
           <div className="titleContainer">
             <h2 className="productPageTitle">Apollo</h2>

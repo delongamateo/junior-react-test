@@ -4,6 +4,8 @@
     padding: 16px;
     margin-bottom: 100px;
     position: relative;
+    text-decoration: none;
+    
 
     .circleIcon {
         position: absolute;
@@ -17,12 +19,14 @@
         margin-top: 24px;
         font-size: 18px;
         font-weight: 300;
+        color: black;
     }
 
     .productPrice {
         font-size: 18px;
         font-weight: 500;
         margin-top: 8px;
+        color: black;
     }
 
     &:hover {

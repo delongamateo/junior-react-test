@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Nav.scss"
 
 class Nav extends Component {
@@ -7,30 +8,33 @@ class Nav extends Component {
     return (
       <nav>
         <div className="categories">
-          <button
+          <Link
+            to="/"
             className={
               this.props.category === "Women" ? "selectedCategory" : "category"
             }
             onClick={() => this.props.updateCategory("Women")}
           >
             WOMEN
-          </button>
-          <button
+          </Link>
+          <Link
+            to="/"
             className={
               this.props.category === "Men" ? "selectedCategory" : "category"
             }
             onClick={() => this.props.updateCategory("Men")}
           >
             MEN
-          </button>
-          <button
+          </Link>
+          <Link
+            to="/"
             className={
               this.props.category === "Kids" ? "selectedCategory" : "category"
             }
             onClick={() => this.props.updateCategory("Kids")}
           >
             KIDS
-          </button>
+          </Link>
         </div>
         <div className="logoContainer">
           <img src="./images/a-logo.png" alt="logo" />
