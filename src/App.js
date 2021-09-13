@@ -73,16 +73,16 @@ class App extends Component {
                 <MiniCart showMiniCart={this.showMiniCart} />
               )}
               <Switch>
-                <Route path={`/${this.state.category}`}>
+                <Route exact path={`/${this.state.category}`}>
                   <Category
                     category={this.state.category}
                     miniCart={this.state.miniCart}
                   />
                 </Route>
-                <Route path="/productpage">
+                <Route exact path="/productpage">
                   <ProductPage />
                 </Route>
-                <Route path="/cart">
+                <Route exact path="/cart">
                   <Cart />
                 </Route>
               </Switch>

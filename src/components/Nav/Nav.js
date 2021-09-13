@@ -28,13 +28,14 @@ class Nav extends Component {
           >
             ALL
           </Link>
-          {this.props.data.categories?.map((category) => (
+          {this.props.data.categories?.map((category, i) => (
             <Link
             to={`/${category.name}`}
             className={
               this.props.category === category.name ? "selectedCategory" : "category"
             }
             onClick={() => this.props.updateCategory(category.name)}
+            key={i}
           >
             {category.name.toUpperCase()}
           </Link>
@@ -46,7 +47,7 @@ class Nav extends Component {
         </div>
         <div className="currencyAndCart">
           <div
-            class="navCurrencyContainer"
+            className="navCurrencyContainer"
             onClick={() => this.props.showCurrenciesPicker()}
           >
             <p className="storeCurrency">{this.props.storeCurrency}</p>

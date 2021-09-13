@@ -4,17 +4,8 @@ import {gql} from "apollo-boost"
 import {graphql} from "react-apollo"
 import "./ProductCard.scss"
 
-const getCurrenciesQuery = gql`
-    {
-        categories {
-            name
-        }
-    }
-`
-
 class ProductCard extends Component {
     render() {
-        console.log(this.props)
         return (
           <Link to="/productpage" className="cardContainer">
             <img src="./images/Product D2.png" />
@@ -26,4 +17,4 @@ class ProductCard extends Component {
     }
 }
 
-export default graphql(getCurrenciesQuery)(ProductCard);
+export default ProductCard;
