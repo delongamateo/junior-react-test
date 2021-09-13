@@ -8,8 +8,26 @@ const getCategoryQuery = gql`
   query category($category: String!) {
     category(input: {title: $category}) {
       products {
+        id
         name
+        inStock
         gallery
+        description
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
+        prices {
+          currency
+          amount
+        }
+        brand
       }
     }
   }
@@ -17,7 +35,6 @@ const getCategoryQuery = gql`
 
 class Category extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="categoryContainer">
         {this.props.miniCart && <div className="overlay"></div>}
@@ -33,7 +50,11 @@ class Category extends Component {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error</p>;
               return data?.category?.products?.map(
-                (product, i) => <ProductCard key={i}/>
+                (product, i) => 
+                <ProductCard 
+                  key={i}
+                  product={product}
+                />
               );
             }}
           </Query>
