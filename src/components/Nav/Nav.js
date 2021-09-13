@@ -11,40 +11,34 @@ class Nav extends Component {
           <Link
             to="/"
             className={
-              this.props.category === "Women" ? "selectedCategory" : "category"
+              this.props.category === "Clothes"
+                ? "selectedCategory"
+                : "category"
             }
-            onClick={() => this.props.updateCategory("Women")}
+            onClick={() => this.props.updateCategory("Clothes")}
           >
-            WOMEN
+            CLOTHES
           </Link>
           <Link
-            to="/"
+            to="/tech"
             className={
-              this.props.category === "Men" ? "selectedCategory" : "category"
+              this.props.category === "Tech" ? "selectedCategory" : "category"
             }
-            onClick={() => this.props.updateCategory("Men")}
+            onClick={() => this.props.updateCategory("Tech")}
           >
-            MEN
-          </Link>
-          <Link
-            to="/"
-            className={
-              this.props.category === "Kids" ? "selectedCategory" : "category"
-            }
-            onClick={() => this.props.updateCategory("Kids")}
-          >
-            KIDS
+            TECH
           </Link>
         </div>
         <div className="logoContainer">
           <img src="./images/a-logo.png" alt="logo" />
         </div>
         <div className="currencyAndCart">
-          <select className="currencies">
-            <option value="volvo">$ USD</option>
-            <option value="saab">€ EUR</option>
-            <option value="mercedes">¥ JPY</option>
-          </select>
+          <p
+            className="currency"
+            onClick={() => this.props.showCurrenciesPicker()}
+          >
+            {this.props.storeCurrency}
+          </p>
           <img
             src="./images/Empty Cart.png"
             alt="cart"

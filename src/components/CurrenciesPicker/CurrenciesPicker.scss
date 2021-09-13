@@ -1,0 +1,13 @@
+.currenciesContainer {
+    width: 115px;
+    height: 170px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: absolute;
+    margin-top: 60px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding-left: 20px;
+}
