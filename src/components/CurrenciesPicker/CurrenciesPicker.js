@@ -15,7 +15,7 @@ class CurrenciesPicker extends Component {
         return (
           <div className="currenciesContainer">
             {this.props.data?.currencies?.map((currency) => (
-              <p className="currency" onClick={() => this.props.changeCurrency(currency)}>
+              <p className="currency" onClick={() => this.props.changeCurrency(currency)} >
                 {currency}
               </p>
             ))}

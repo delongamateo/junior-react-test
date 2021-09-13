@@ -32,6 +32,7 @@ class App extends Component {
   showMiniCart = () => {
     if (this.state.miniCart === false) {
       this.setState({ miniCart: true });
+      this.setState({ currenciesPicker: false });
     } else {
       this.setState({ miniCart: false });
     }
@@ -40,6 +41,7 @@ class App extends Component {
   showCurrenciesPicker = () => {
     if (this.state.currenciesPicker === false) {
       this.setState({ currenciesPicker: true });
+      this.setState({ miniCart: false });
     } else {
       this.setState({ currenciesPicker: false });
     }
@@ -47,6 +49,7 @@ class App extends Component {
 
   changeCurrency = (currency) => {
     this.setState({ storeCurrency: currency });
+    this.showCurrenciesPicker()
   }
 
   render() {
@@ -60,6 +63,7 @@ class App extends Component {
                 showMiniCart={this.showMiniCart}
                 category={this.state.category}
                 showCurrenciesPicker={this.showCurrenciesPicker}
+                currenciesPicker={this.state.currenciesPicker}
                 storeCurrency={this.state.storeCurrency}
               />
               {this.state.currenciesPicker && (
@@ -70,7 +74,10 @@ class App extends Component {
               )}
               <Switch>
                 <Route exact path="/">
-                  <Category category={this.state.category} />
+                  <Category
+                    category={this.state.category}
+                    miniCart={this.state.miniCart}
+                  />
                 </Route>
                 <Route path="/tech">
                   <Category category={this.state.category} />

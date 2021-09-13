@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Nav.scss"
+import { gql } from "apollo-boost";
+import { graphql } from "react-apollo";
+import "./Nav.scss";
+
+const getCategoriesQuery = gql`
+  {
+    categories {
+      name
+    }
+  }
+`;
 
 class Nav extends Component {
-
   render() {
     return (
       <nav>
@@ -11,44 +20,57 @@ class Nav extends Component {
           <Link
             to="/"
             className={
-              this.props.category === "Clothes"
+              this.props.category === "All"
                 ? "selectedCategory"
                 : "category"
             }
-            onClick={() => this.props.updateCategory("Clothes")}
+            onClick={() => this.props.updateCategory("All")}
           >
-            CLOTHES
+            ALL
           </Link>
-          <Link
-            to="/tech"
+          {this.props.data.categories?.map((category) => (
+            <Link
+            to={`/${category.name}`}
             className={
-              this.props.category === "Tech" ? "selectedCategory" : "category"
+              this.props.category === category.name ? "selectedCategory" : "category"
             }
-            onClick={() => this.props.updateCategory("Tech")}
+            onClick={() => this.props.updateCategory(category.name)}
           >
-            TECH
+            {category.name.toUpperCase()}
           </Link>
+            ))
+          }
         </div>
         <div className="logoContainer">
           <img src="./images/a-logo.png" alt="logo" />
         </div>
         <div className="currencyAndCart">
-          <p
-            className="currency"
+          <div
+            class="navCurrencyContainer"
             onClick={() => this.props.showCurrenciesPicker()}
           >
-            {this.props.storeCurrency}
-          </p>
-          <img
-            src="./images/Empty Cart.png"
-            alt="cart"
-            className="cart"
+            <p className="storeCurrency">{this.props.storeCurrency}</p>
+            <img
+              src={
+                this.props.currenciesPicker
+                  ? "./images/up.png"
+                  : "./images/down.png"
+              }
+              alt="arrow"
+              className="arrow"
+            />
+          </div>
+          <div
+            className="navCartContainer"
             onClick={() => this.props.showMiniCart()}
-          />
+          >
+            <img src="./images/Empty Cart.png" alt="cart" className="cart" />
+            <div className="cartNumber">2</div>
+          </div>
         </div>
       </nav>
     );
   }
 }
 
-export default Nav;
+export default graphql (getCategoriesQuery)(Nav);
