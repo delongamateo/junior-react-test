@@ -7,7 +7,7 @@ class Category extends Component {
     return (
       <div className="categoryContainer">
         {this.props.miniCart && <div className="overlay"></div>}
-        <h1 className="categoryTitle">{this.props.category}</h1>
+        <h1 className="categoryTitle">{this.props.category === "" ? "All" : this.props.category}</h1>
         <div className="cards">
           <ProductCard />
           <ProductCard />

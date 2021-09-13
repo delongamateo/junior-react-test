@@ -18,7 +18,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      category: "Clothes",
+      category: "",
       miniCart: false,
       currenciesPicker: false,
       storeCurrency: "USD"
@@ -73,14 +73,11 @@ class App extends Component {
                 <MiniCart showMiniCart={this.showMiniCart} />
               )}
               <Switch>
-                <Route exact path="/">
+                <Route path={`/${this.state.category}`}>
                   <Category
                     category={this.state.category}
                     miniCart={this.state.miniCart}
                   />
-                </Route>
-                <Route path="/tech">
-                  <Category category={this.state.category} />
                 </Route>
                 <Route path="/productpage">
                   <ProductPage />

@@ -20,11 +20,11 @@ class Nav extends Component {
           <Link
             to="/"
             className={
-              this.props.category === "All"
+              this.props.category === ""
                 ? "selectedCategory"
                 : "category"
             }
-            onClick={() => this.props.updateCategory("All")}
+            onClick={() => this.props.updateCategory("")}
           >
             ALL
           </Link>
