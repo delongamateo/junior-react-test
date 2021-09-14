@@ -35,6 +35,7 @@ const getCategoryQuery = gql`
 
 class Category extends Component {
   render() {
+    console.log(this.props)
     return (
       <div className="categoryContainer">
         {this.props.miniCart && <div className="overlay"></div>}

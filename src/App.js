@@ -15,8 +15,8 @@ const client = new ApolloClient({
 });
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       category: "",
       miniCart: false,
@@ -79,7 +79,7 @@ class App extends Component {
                     miniCart={this.state.miniCart}
                   />
                 </Route>
-                <Route exact path="/productpage">
+                <Route exact path="/productpage/:id">
                   <ProductPage />
                 </Route>
                 <Route exact path="/cart">
