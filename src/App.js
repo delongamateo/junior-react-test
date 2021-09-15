@@ -9,6 +9,7 @@ import Nav from "./components/Nav/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import Test from "./components/Test"
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -21,7 +22,8 @@ class App extends Component {
       category: "",
       miniCart: false,
       currenciesPicker: false,
-      storeCurrency: "USD"
+      storeCurrency: "USD",
+      a: "ps-5"
     };
   }
 
@@ -80,7 +82,7 @@ class App extends Component {
                   />
                 </Route>
                 <Route exact path="/productpage/:id">
-                  <ProductPage />
+                  <ProductPage a={this.state.a}/>
                 </Route>
                 <Route exact path="/cart">
                   <Cart />
