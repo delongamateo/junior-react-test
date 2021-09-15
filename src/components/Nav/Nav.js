@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import "./Nav.scss";
+import CartItemsContext from "../Context/CartItemsContext";
 
 const getCategoriesQuery = gql`
   {
@@ -14,6 +15,7 @@ const getCategoriesQuery = gql`
 
 class Nav extends Component {
   render() {
+    const {items, storeCurrency} = this.context
     return (
       <nav>
         <div className="categories">
@@ -50,7 +52,7 @@ class Nav extends Component {
             className="navCurrencyContainer"
             onClick={() => this.props.showCurrenciesPicker()}
           >
-            <p className="storeCurrency">{this.props.storeCurrency}</p>
+            <p className="storeCurrency">{storeCurrency}</p>
             <img
               src={
                 this.props.currenciesPicker
@@ -66,12 +68,14 @@ class Nav extends Component {
             onClick={() => this.props.showMiniCart()}
           >
             <img src="./images/Empty Cart.png" alt="cart" className="cart" />
-            <div className="cartNumber">2</div>
+            <div className="cartNumber">{items?.length}</div>
           </div>
         </div>
       </nav>
     );
   }
 }
+
+Nav.contextType = CartItemsContext;
 
 export default graphql (getCategoriesQuery)(Nav);

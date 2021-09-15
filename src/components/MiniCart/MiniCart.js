@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import MiniCartItem from "../MiniCartItem/MiniCartItem"
 import { Link } from "react-router-dom"
+import CartItemsContext from "../Context/CartItemsContext";
 import "./MiniCart.scss";
 
 class MiniCart extends Component {
+
     render() {
+      const {items, addItem} = this.context
         return (
           <div className="miniCart">
             <div className="miniCartTitle">
               <p>
-                My Bag, <span>2 items</span>
+                My Bag, <span>{items.length} items</span>
               </p>
             </div>
-            <MiniCartItem />
-            <MiniCartItem />
+            {items.map((item, i) => (
+              <MiniCartItem item={item} key={i}/>
+            ))}
             <div className="miniCartTotal">
               <p className="total">Total</p>
               <p className="price">$100.00</p>
@@ -26,5 +30,7 @@ class MiniCart extends Component {
         );
     }
 }
+
+MiniCart.contextType = CartItemsContext;
 
 export default MiniCart;

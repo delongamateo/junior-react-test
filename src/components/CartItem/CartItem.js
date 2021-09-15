@@ -2,33 +2,13 @@ import React, { Component } from "react";
 import "./CartItem.scss";
 
 class CartItem extends Component {
-  constructor() {
-    super();
-    this.state = {
-      quantity: 1,
-    };
-  }
-
-  increment() {
-    this.setState({
-      quantity: this.state.quantity + 1,
-    });
-  }
-
-  decrement() {
-    if (this.state.quantity > 0) {
-      this.setState({
-        quantity: this.state.quantity - 1,
-      });
-    } else return;
-  }
-
+ 
   render() {
     return (
       <div className="cartItem">
         <div className="cartItemInfo">
-            <p className="cartItemName">Apollo</p>
-            <p className="cartItemName2">Running Short</p>
+            <p className="cartItemName">{this.props.item.name}</p>
+            <p className="cartItemName2">{this.props.item.brand}</p>
             <p className="cartItemPrice">$50.00</p>
           <div className="sizeButtons">
             <button className="smallButtonSize">S</button>
@@ -40,12 +20,12 @@ class CartItem extends Component {
             <button className="smallButton" onClick={() => this.increment()}>
               +
             </button>
-            <p>{this.state.quantity}</p>
+            <p>1</p>
             <button className="smallButton" onClick={() => this.decrement()}>
               -
             </button>
           </div>
-          <img src="./images/Product D.png" />
+          <img src={this.props.item.gallery[0]} />
         </div>
       </div>
     );

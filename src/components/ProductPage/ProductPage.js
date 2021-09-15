@@ -3,10 +3,11 @@ import { gql } from "apollo-boost";
 import { graphql, Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
+import CartItemsContext from "../Context/CartItemsContext";
 import "./ProductPage.scss";
 
 const getProductQuery = gql`
-  query product($id: String!){
+  query product($id: String!) {
     product(id: $id) {
       name
       inStock
@@ -32,21 +33,25 @@ const getProductQuery = gql`
   }
 `;
 
+/* componentDidMount() {
+
+} */
+
 class ProductPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      a: false
-    };
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.match.params.id = prevProps.match.params.id;
+    }
   }
 
+  /* provaj u didmount pozvat Query pa ga onda render doli */
+
   render() {
-    console.log(this.props)
+    const { addItem } = this.context;
     return (
       <div className="productContainer">
         <Query
           query={getProductQuery}
-          fetchPolicy="no-cache"
           variables={{ id: this.props.match.params.id }}
         >
           {({ loading, error, data }) => {
@@ -90,7 +95,12 @@ class ProductPage extends Component {
                     <p className="productPrice">PRICE:</p>
                     <p className="productPriceNumber">$50.00</p>
                   </div>
-                  <button className="productAddToCart">ADD TO CART</button>
+                  <button
+                    className="productAddToCart"
+                    onClick={() => addItem(data.product)}
+                  >
+                    ADD TO CART
+                  </button>
                   <div className="productDescription">
                     {ReactHtmlParser(data.product.description)}
                   </div>
@@ -103,5 +113,7 @@ class ProductPage extends Component {
     );
   }
 }
+
+ProductPage.contextType = CartItemsContext;
 
 export default graphql(getProductQuery)(withRouter(ProductPage));

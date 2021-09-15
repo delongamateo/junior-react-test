@@ -10,6 +10,8 @@
     align-items: flex-start;
     justify-content: space-evenly;
     padding-left: 20px;
+    z-index: 10;
+    background-color: white;
 
     .currency {
         font-size: 18px;
