@@ -5,7 +5,7 @@ import "./Cart.scss"
 
 class Cart extends Component {
     render() {
-      const { items, addItem } = this.context;
+      const { items } = this.context;
       const list = [
         ...items
           .reduce((mp, o) => {
@@ -13,7 +13,7 @@ class Cart extends Component {
             mp.get(o.id).count++;
             return mp;
           }, new Map())
-          .values(),
+          .values()
       ];
 
         return (
@@ -21,7 +21,7 @@ class Cart extends Component {
             <h2 className="cart">CART</h2>
             <div className="cartItemContainer">
               {list.map((item, i) => (
-                <CartItem item={item} addItem={addItem} key={i}/>
+                <CartItem item={item} key={i}/>
               ))}
             </div>
           </div>

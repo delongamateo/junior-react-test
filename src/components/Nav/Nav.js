@@ -68,7 +68,7 @@ class Nav extends Component {
             onClick={() => this.props.showMiniCart()}
           >
             <img src="./images/Empty Cart.png" alt="cart" className="cart" />
-            <div className="cartNumber">{items?.length}</div>
+            {items.lenght !== 0 && <div className="cartNumber">{items.length}</div>}
           </div>
         </div>
       </nav>

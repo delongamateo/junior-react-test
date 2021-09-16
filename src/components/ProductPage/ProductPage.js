@@ -51,7 +51,7 @@ class ProductPage extends Component {
   }
 
   render() {
-    const { addItem } = this.context;
+    const { addItem, storeCurrency } = this.context;
     console.log(this.props);
     return (
       <div className="productContainer">
@@ -98,7 +98,11 @@ class ProductPage extends Component {
                   ))}
                   <div className="productPriceContainer">
                     <p className="productPrice">PRICE:</p>
-                    <p className="productPriceNumber">$50.00</p>
+                    <p className="productPriceNumber">
+                      {data.product.prices.find((price) => {
+                        return price.currency === storeCurrency;
+                      }).amount} {storeCurrency}
+                    </p>
                   </div>
                   <button
                     className="productAddToCart"

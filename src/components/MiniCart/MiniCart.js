@@ -7,9 +7,8 @@ import "./MiniCart.scss";
 class MiniCart extends Component {
 
     render() {
-      const {items, addItem} = this.context
+      const { items, addItem, storeCurrency } = this.context;
       const list = [...items.reduce((mp, o) => {if(!mp.has(o.id)) mp.set(o.id, {...o, count: 0}); mp.get(o.id).count++; return mp;}, new Map).values()]
-
         return (
           <div className="miniCart">
             <div className="miniCartTitle">
@@ -22,7 +21,11 @@ class MiniCart extends Component {
             ))}
             <div className="miniCartTotal">
               <p className="total">Total</p>
-              <p className="price">$100.00</p>
+              <p className="price">{Math.round((items.reduce((acc, item) => {acc =
+                acc +
+                item.prices.find((price) => {
+                  return price.currency === storeCurrency;
+                }).amount; return (acc);}, 0) + Number.EPSILON) * 100) / 100} {storeCurrency}</p>
             </div>
             <div className="miniCartButtons">
               <Link to="/cart" className="viewBag" onClick={() => {this.props.showMiniCart()}}>VIEW BAG</Link>
