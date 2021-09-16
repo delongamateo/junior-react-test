@@ -8,6 +8,8 @@ class MiniCart extends Component {
 
     render() {
       const {items, addItem} = this.context
+      const list = [...items.reduce((mp, o) => {if(!mp.has(o.id)) mp.set(o.id, {...o, count: 0}); mp.get(o.id).count++; return mp;}, new Map).values()]
+
         return (
           <div className="miniCart">
             <div className="miniCartTitle">
@@ -15,8 +17,8 @@ class MiniCart extends Component {
                 My Bag, <span>{items.length} items</span>
               </p>
             </div>
-            {items.map((item, i) => (
-              <MiniCartItem item={item} key={i}/>
+            {list.map((item, i) => (
+              <MiniCartItem item={item} key={i} addItem={addItem}/>
             ))}
             <div className="miniCartTotal">
               <p className="total">Total</p>

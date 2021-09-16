@@ -25,6 +25,7 @@ export class CartItems extends Component {
     this.setState({ storeCurrency: currency });
   };
 
+  /* ne sprema valutu */
   componentDidUpdate(prevState) {
     if (this.state.items !== prevState.items) {
       localStorage.setItem("items", JSON.stringify(this.state));

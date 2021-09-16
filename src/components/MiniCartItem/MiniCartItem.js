@@ -18,15 +18,15 @@ class MiniCartItem extends Component {
         </div>
         <div className="miniQuantityAndImage">
           <div className="miniQuantity">
-            <button className="miniSmallButton" onClick={() => this.increment()}>
+            <button className="miniSmallButton" onClick={() => this.props.addItem(this.props.item)}>
               +
             </button>
-            <p>1</p>
+            <p>{this.props.item.count}</p>
             <button className="miniSmallButton" onClick={() => this.decrement()}>
               -
             </button>
           </div>
-          <img src={this.props.item.gallery[0]} className="cartItemImage"/>
+          <img src={this.props.item.gallery[0]} className="cartItemImage" alt="cartitemimage"/>
         </div>
       </div>
     );

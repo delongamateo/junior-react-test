@@ -9,6 +9,7 @@ import "./ProductPage.scss";
 const getProductQuery = gql`
   query product($id: String!) {
     product(id: $id) {
+      id
       name
       inStock
       gallery
@@ -38,16 +39,20 @@ const getProductQuery = gql`
 } */
 
 class ProductPage extends Component {
+
+  componentDidMount() {
+    
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.match.params.id = prevProps.match.params.id;
     }
   }
 
-  /* provaj u didmount pozvat Query pa ga onda render doli */
-
   render() {
     const { addItem } = this.context;
+    console.log(this.props);
     return (
       <div className="productContainer">
         <Query
