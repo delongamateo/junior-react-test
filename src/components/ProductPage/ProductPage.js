@@ -88,7 +88,12 @@ class ProductPage extends Component {
                     <div className="productSizeContainer" key={i}>
                       <p className="productSize">{attribute.name}</p>
                       <div className="productSizeButtons">
-                        {attribute.items.map((item, i) => (
+                        {attribute.type === "swatch" 
+                        ? attribute.items.map((item, i) => (
+                          <button className="sizeButton" key={i} style={{backgroundColor: item.value}}>
+                          </button>
+                          )) 
+                        : attribute.items.map((item, i) => (
                           <button className="sizeButton" key={i}>
                             {item.displayValue}
                           </button>

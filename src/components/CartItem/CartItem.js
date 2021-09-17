@@ -5,7 +5,7 @@ import "./CartItem.scss";
 class CartItem extends Component {
  
   render() {
-    const { storeCurrency, addItem } = this.context;
+    const { addItem, removeItem, storeCurrency } = this.context;
     return (
       <div className="cartItem">
         <div className="cartItemInfo">
@@ -28,7 +28,7 @@ class CartItem extends Component {
               +
             </button>
             <p>{this.props.item.count}</p>
-            <button className="smallButton" onClick={() => this.decrement()}>
+            <button className="smallButton" onClick={() => removeItem(this.props.item)}>
               -
             </button>
           </div>

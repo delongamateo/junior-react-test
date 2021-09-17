@@ -5,16 +5,19 @@ import "./MiniCartItem.scss"
 class MiniCartItem extends Component {
 
   render() {
-    const { addItem, storeCurrency } = this.context;
+    const { addItem, removeItem, storeCurrency } = this.context;
     return (
       <div className="miniCartItem">
         <div className="miniCartItemInfo">
           <div className="miniNameAndPrice">
             <p className="miniCartItemName">{this.props.item.name}</p>
             <p className="miniCartItemPrice">
-              {this.props.item.prices.find((price) => {
-                return price.currency === storeCurrency;
-              }).amount} {storeCurrency}
+              {
+                this.props.item.prices.find((price) => {
+                  return price.currency === storeCurrency;
+                }).amount
+              }{" "}
+              {storeCurrency}
             </p>
           </div>
           <div className="miniSizeButtons">
@@ -31,10 +34,7 @@ class MiniCartItem extends Component {
               +
             </button>
             <p>{this.props.item.count}</p>
-            <button
-              className="miniSmallButton"
-              onClick={() => this.decrement()}
-            >
+            <button className="miniSmallButton" onClick={() => removeItem(this.props.item)}>
               -
             </button>
           </div>

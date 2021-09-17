@@ -14,18 +14,30 @@ export class CartItems extends Component {
 
   addItem = (item) => {
     this.setState((state) => {
+      console.log(state)
       const items = state.items.concat(item);
+      console.log(items)
       return {
-        items,
+        items
       };
     });
   };
+
+  removeItem = (item) => {
+    const newItems = this.state.items
+    const indexOfItem = this.state.items.findIndex(
+      (product) => product.id === item.id
+    );
+    if(indexOfItem > -1) {
+      newItems.splice(indexOfItem, 1).sort();
+      this.setState(newItems)
+    }
+  }
 
   changeCurrency = (currency) => {
     this.setState({ storeCurrency: currency });
   };
 
-  /* ne sprema valutu */
   componentDidUpdate(prevState) {
     if (this.state.items !== prevState.items) {
       localStorage.setItem("items", JSON.stringify(this.state));
@@ -44,9 +56,9 @@ export class CartItems extends Component {
 
   render() {
     const { items, storeCurrency } = this.state;
-    const { addItem, changeCurrency } = this;
+    const { addItem, removeItem, changeCurrency } = this;
     return (
-      <CartItemsContext.Provider value={{ items, storeCurrency, addItem, changeCurrency }}>
+      <CartItemsContext.Provider value={{ items, storeCurrency, addItem, removeItem, changeCurrency }}>
         {this.props.children}
       </CartItemsContext.Provider>
     );
