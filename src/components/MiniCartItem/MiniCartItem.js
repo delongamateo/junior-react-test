@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./MiniCartItem.scss"
 
 class MiniCartItem extends Component {
@@ -49,6 +49,6 @@ class MiniCartItem extends Component {
   }
 }
 
-MiniCartItem.contextType = CartItemsContext;
+MiniCartItem.contextType = StoreContext;
 
 export default MiniCartItem

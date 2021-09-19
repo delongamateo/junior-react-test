@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CartItem from "../CartItem/CartItem"
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./Cart.scss"
 
 class Cart extends Component {
@@ -29,6 +29,6 @@ class Cart extends Component {
     }
 }
 
-Cart.contextType = CartItemsContext;
+Cart.contextType = StoreContext;
 
 export default Cart;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MiniCartItem from "../MiniCartItem/MiniCartItem"
 import { Link } from "react-router-dom"
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./MiniCart.scss";
 
 class MiniCart extends Component {
@@ -36,6 +36,6 @@ class MiniCart extends Component {
     }
 }
 
-MiniCart.contextType = CartItemsContext;
+MiniCart.contextType = StoreContext;
 
 export default MiniCart;

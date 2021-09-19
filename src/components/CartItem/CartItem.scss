@@ -28,6 +28,8 @@
         }
 
         .sizeButtons {
+            display: flex;
+            flex-direction: row;
             .smallButtonSize {
                 height: 45px;
                 width: 63px;
@@ -35,6 +37,9 @@
                 border: 1px solid black;
                 font-size: 16px;
                 margin-right: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import "./Nav.scss";
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 
 const getCategoriesQuery = gql`
   {
@@ -15,34 +15,33 @@ const getCategoriesQuery = gql`
 
 class Nav extends Component {
   render() {
-    const {items, storeCurrency} = this.context
+    const { items, storeCurrency, selectedCategory, updateCategory } = this.context;
     return (
       <nav>
         <div className="categories">
           <Link
             to="/"
             className={
-              this.props.category === ""
-                ? "selectedCategory"
-                : "category"
+              selectedCategory === "" ? "selectedCategory" : "category"
             }
-            onClick={() => this.props.updateCategory("")}
+            onClick={() => updateCategory("")}
           >
             ALL
           </Link>
           {this.props.data.categories?.map((category, i) => (
             <Link
-            to={`/${category.name}`}
-            className={
-              this.props.category === category.name ? "selectedCategory" : "category"
-            }
-            onClick={() => this.props.updateCategory(category.name)}
-            key={i}
-          >
-            {category.name.toUpperCase()}
-          </Link>
-            ))
-          }
+              to={`/${category.name}`}
+              className={
+                selectedCategory === category.name
+                  ? "selectedCategory"
+                  : "category"
+              }
+              onClick={() => updateCategory(category.name)}
+              key={i}
+            >
+              {category.name.toUpperCase()}
+            </Link>
+          ))}
         </div>
         <div className="logoContainer">
           <img src="./images/a-logo.png" alt="logo" />
@@ -68,7 +67,12 @@ class Nav extends Component {
             onClick={() => this.props.showMiniCart()}
           >
             <img src="./images/Empty Cart.png" alt="cart" className="cart" />
-            {items.lenght !== 0 && <div className="cartNumber">{items.length}</div>}
+            <div
+              className="cartNumber"
+              style={{ display: items.length > 0 ? "flex" : "none" }}
+            >
+              {items.length}
+            </div>
           </div>
         </div>
       </nav>
@@ -76,6 +80,6 @@ class Nav extends Component {
   }
 }
 
-Nav.contextType = CartItemsContext;
+Nav.contextType = StoreContext;
 
 export default graphql (getCategoriesQuery)(Nav);

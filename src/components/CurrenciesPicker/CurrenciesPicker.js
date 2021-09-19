@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./CurrenciesPicker.scss"
 
 const getCurrenciesQuery = gql`
@@ -25,6 +25,6 @@ class CurrenciesPicker extends Component {
     }
 }
 
-CurrenciesPicker.contextType = CartItemsContext;
+CurrenciesPicker.contextType = StoreContext;
 
 export default graphql(getCurrenciesQuery)(CurrenciesPicker);

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./CartItem.scss";
 
 class CartItem extends Component {
- 
   render() {
     const { addItem, removeItem, storeCurrency } = this.context;
     return (
@@ -11,12 +10,16 @@ class CartItem extends Component {
         <div className="cartItemInfo">
           <p className="cartItemName">{this.props.item.name}</p>
           <p className="cartItemName2">{this.props.item.brand}</p>
-          <p className="cartItemPrice">{this.props.item.prices.find((price) => {
+          <p className="cartItemPrice">
+            {
+              this.props.item.prices.find((price) => {
                 return price.currency === storeCurrency;
-              }).amount} {storeCurrency}</p>
+              }).amount
+            } {storeCurrency}
+          </p>
           <div className="sizeButtons">
-            <button className="smallButtonSize">S</button>
-            <button className="smallButtonSize">M</button>
+            <div className="smallButtonSize">S</div>
+            <div className="smallButtonSize">M</div>
           </div>
         </div>
         <div className="quantityAndImage">
@@ -28,7 +31,10 @@ class CartItem extends Component {
               +
             </button>
             <p>{this.props.item.count}</p>
-            <button className="smallButton" onClick={() => removeItem(this.props.item)}>
+            <button
+              className="smallButton"
+              onClick={() => removeItem(this.props.item)}
+            >
               -
             </button>
           </div>
@@ -39,6 +45,6 @@ class CartItem extends Component {
   }
 }
 
-CartItem.contextType = CartItemsContext;
+CartItem.contextType = StoreContext;
 
 export default CartItem;

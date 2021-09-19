@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 import { graphql, Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./ProductPage.scss";
 
 const getProductQuery = gql`
@@ -34,25 +34,22 @@ const getProductQuery = gql`
   }
 `;
 
-/* componentDidMount() {
-
-} */
-
 class ProductPage extends Component {
-
-  componentDidMount() {
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      img: 0,
+    };
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.props.match.params.id = prevProps.match.params.id;
-    }
-  }
+  changeImage = (index) => {
+    this.setState({ img: index });
+  };
+
+  componentDidMount() {}
 
   render() {
     const { addItem, storeCurrency } = this.context;
-    console.log(this.props);
     return (
       <div className="productContainer">
         <Query
@@ -71,11 +68,12 @@ class ProductPage extends Component {
                       className="sideImage"
                       alt="sideimage"
                       key={i}
+                      onClick={() => this.changeImage(i)}
                     />
                   ))}
                 </div>
                 <img
-                  src={data.product.gallery[0]}
+                  src={data.product.gallery[this.state.img]}
                   className="productImage"
                   alt="mainimage"
                 />
@@ -86,32 +84,38 @@ class ProductPage extends Component {
                   </div>
                   {data.product.attributes?.map((attribute, i) => (
                     <div className="productSizeContainer" key={i}>
-                      <p className="productSize">{attribute.name}</p>
+                      <p className="productSize">{attribute.name}:</p>
                       <div className="productSizeButtons">
-                        {attribute.type === "swatch" 
-                        ? attribute.items.map((item, i) => (
-                          <button className="sizeButton" key={i} style={{backgroundColor: item.value}}>
-                          </button>
-                          )) 
-                        : attribute.items.map((item, i) => (
-                          <button className="sizeButton" key={i}>
-                            {item.displayValue}
-                          </button>
-                        ))}
+                        {attribute.type === "swatch"
+                          ? attribute.items.map((item, i) => (
+                              <button
+                                className="sizeButton"
+                                key={i}
+                                style={{ backgroundColor: item.value }}
+                              ></button>
+                            ))
+                          : attribute.items.map((item, i) => (
+                              <button className="sizeButton" key={i}>
+                                {item.displayValue}
+                              </button>
+                            ))}
                       </div>
                     </div>
                   ))}
                   <div className="productPriceContainer">
                     <p className="productPrice">PRICE:</p>
                     <p className="productPriceNumber">
-                      {data.product.prices.find((price) => {
-                        return price.currency === storeCurrency;
-                      }).amount} {storeCurrency}
+                      {
+                        data.product.prices.find((price) => {
+                          return price.currency === storeCurrency;
+                        }).amount
+                      }{" "}
+                      {storeCurrency}
                     </p>
                   </div>
                   <button
                     className="productAddToCart"
-                    onClick={() => addItem(data.product)}
+                    onClick={() => addItem({id: data.product.id, attributes: {size: "M", color: "red"}})}
                   >
                     ADD TO CART
                   </button>
@@ -128,6 +132,6 @@ class ProductPage extends Component {
   }
 }
 
-ProductPage.contextType = CartItemsContext;
+ProductPage.contextType = StoreContext;
 
-export default graphql(getProductQuery)(withRouter(ProductPage));
+export default withRouter(ProductPage);

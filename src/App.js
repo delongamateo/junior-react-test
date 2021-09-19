@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import Test from "./components/Test"
-import CartItemsContext, {CartItems} from "./components/Context/CartItemsContext"
+import StoreContext from "./components/Context/StoreContext"
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -20,15 +20,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: "",
       miniCart: false,
       currenciesPicker: false
     };
   }
-
-  updateCategory = (category) => {
-    this.setState({ category: category });
-  };
 
   showMiniCart = () => {
     if (this.state.miniCart === false) {
@@ -49,16 +44,14 @@ class App extends Component {
   }
 
   render() {
+    const { selectedCategory } = this.context;
     return (
       <ApolloProvider client={client}>
         <Router>
           <div className="app">
             <div className="container">
-              <CartItems>
                 <Nav
-                  updateCategory={this.updateCategory}
                   showMiniCart={this.showMiniCart}
-                  category={this.state.category}
                   showCurrenciesPicker={this.showCurrenciesPicker}
                   currenciesPicker={this.state.currenciesPicker}
                 />
@@ -72,9 +65,8 @@ class App extends Component {
                   <MiniCart showMiniCart={this.showMiniCart} />
                 )}
                 <Switch>
-                  <Route exact path={`/${this.state.category}`}>
+                  <Route exact path={`/${selectedCategory}`}>
                     <Category
-                      category={this.state.category}
                       miniCart={this.state.miniCart}
                     />
                   </Route>
@@ -85,7 +77,6 @@ class App extends Component {
                     <Cart />
                   </Route>
                 </Switch>
-              </CartItems>
             </div>
           </div>
         </Router>
@@ -93,5 +84,7 @@ class App extends Component {
     );
   }
 }
+
+App.contextType = StoreContext;
 
 export default App;

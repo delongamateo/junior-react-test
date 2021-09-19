@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import CartItemsContext from "../Context/CartItemsContext";
+import StoreContext from "../Context/StoreContext";
 import "./ProductCard.scss";
 
 class ProductCard extends Component {
@@ -24,6 +24,6 @@ class ProductCard extends Component {
   }
 }
 
-ProductCard.contextType = CartItemsContext;
+ProductCard.contextType = StoreContext;
 
 export default ProductCard;
