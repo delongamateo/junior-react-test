@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {findIndex, isEqual, cloneDeep} from "lodash"
 
 const StoreContext = React.createContext();
 
@@ -14,15 +15,20 @@ export class Store extends Component {
   }
 
   addItem = (item) => {
-    if(true) { /* check if item exist */
-
-    } else { 
-      
-    }
+    console.log(item);
     this.setState((state) => {
-      const items = state.items.concat(item);
+      let items = cloneDeep(state.items);
+      console.log(items)
+      const index = findIndex(items, (currentItem) =>currentItem.id === item.id && isEqual(currentItem.attributes, item.attributes));
+      console.log(index)
+      if (index > -1) {
+        items[index].quantity++
+      } else {
+        items = items.concat({...item, quantity: 1});
+      }
+      console.log(items);
       return {
-        items,
+        items
       };
     });
   };

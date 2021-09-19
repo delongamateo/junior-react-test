@@ -4,6 +4,7 @@ import { graphql, Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
 import StoreContext from "../Context/StoreContext";
+import { assign } from "lodash";
 import "./ProductPage.scss";
 
 const getProductQuery = gql`
@@ -39,6 +40,7 @@ class ProductPage extends Component {
     super(props);
     this.state = {
       img: 0,
+      selection: {},
     };
   }
 
@@ -46,7 +48,13 @@ class ProductPage extends Component {
     this.setState({ img: index });
   };
 
-  componentDidMount() {}
+  addSelection = (key, value) => {
+    console.log(this.state);
+    this.setState({
+      selection: assign(this.state.selection, { [key]: value }),
+    });
+    console.log(this.state);
+  };
 
   render() {
     const { addItem, storeCurrency } = this.context;
@@ -86,19 +94,23 @@ class ProductPage extends Component {
                     <div className="productSizeContainer" key={i}>
                       <p className="productSize">{attribute.name}:</p>
                       <div className="productSizeButtons">
-                        {attribute.type === "swatch"
-                          ? attribute.items.map((item, i) => (
-                              <button
-                                className="sizeButton"
-                                key={i}
-                                style={{ backgroundColor: item.value }}
-                              ></button>
-                            ))
-                          : attribute.items.map((item, i) => (
-                              <button className="sizeButton" key={i}>
-                                {item.displayValue}
-                              </button>
-                            ))}
+                        {attribute.items.map((item, i) => (
+                          <button
+                            className="sizeButton"
+                            key={i}
+                            style={{
+                              backgroundColor:
+                                attribute.type === "swatch"
+                                  ? item.value
+                                  : "none",
+                            }}
+                            onClick={() =>
+                              this.addSelection(attribute.name, item.value)
+                            }
+                          >
+                            {attribute.type === "swatch" ? "" : item.value}
+                          </button>
+                        ))}
                       </div>
                     </div>
                   ))}
@@ -115,7 +127,12 @@ class ProductPage extends Component {
                   </div>
                   <button
                     className="productAddToCart"
-                    onClick={() => addItem({id: data.product.id, attributes: {size: "M", color: "red"}})}
+                    onClick={() =>
+                      addItem({
+                        id: data.product.id,
+                        attributes: this.state.selection
+                      })
+                    }
                   >
                     ADD TO CART
                   </button>
