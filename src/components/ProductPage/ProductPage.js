@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
 import StoreContext from "../Context/StoreContext";
-import { assign } from "lodash";
+import { assign, keysIn } from "lodash";
 import "./ProductPage.scss";
 
 const getProductQuery = gql`
@@ -41,6 +41,7 @@ class ProductPage extends Component {
     this.state = {
       img: 0,
       selection: {},
+      error: "",
     };
   }
 
@@ -125,15 +126,26 @@ class ProductPage extends Component {
                       {storeCurrency}
                     </p>
                   </div>
+                  <p>{this.state.error}</p>
                   <button
                     className="productAddToCart"
-                    onClick={() =>
-                      addItem({
-                        id: data.product.id,
-                        prices: data.product.prices,
-                        attributes: this.state.selection,
-                      })
-                    }
+                    onClick={() => {
+                      if (
+                        keysIn(this.state.selection).length ===
+                        data.product.attributes.length
+                      ) {
+                        addItem({
+                          id: data.product.id,
+                          prices: data.product.prices,
+                          attributes: this.state.selection,
+                        });
+                        this.setState({ selection: {}, error: "" });
+                      } else {
+                        this.setState({
+                          error: "Please select all attributes",
+                        });
+                      }
+                    }}
                   >
                     ADD TO CART
                   </button>
