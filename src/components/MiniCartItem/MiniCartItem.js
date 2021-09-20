@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import StoreContext from "../Context/StoreContext";
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
+import { forIn } from "lodash";
 import "./MiniCartItem.scss";
 
 const getProductQuery = gql`
@@ -41,9 +42,10 @@ class MiniCartItem extends Component {
                   </p>
                 </div>
                 <div className="miniSizeButtons">
-                  {this.props.item.attributes.map()}
-                  <div className="miniSmallButton size">S</div>
-                  <div className="miniSmallButton">M</div>
+                  {Object.values(this.props.item.attributes).map((attribute, i) => (
+                     <div className="miniSmallButton">{attribute}</div>
+                  ))
+                  }
                 </div>
               </div>
               <div className="miniQuantityAndImage">
