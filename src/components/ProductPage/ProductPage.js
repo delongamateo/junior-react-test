@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
-import { graphql, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
 import StoreContext from "../Context/StoreContext";
@@ -130,7 +130,8 @@ class ProductPage extends Component {
                     onClick={() =>
                       addItem({
                         id: data.product.id,
-                        attributes: this.state.selection
+                        prices: data.product.prices,
+                        attributes: this.state.selection,
                       })
                     }
                   >

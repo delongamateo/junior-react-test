@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import { Store } from "./components/Context/StoreContext"
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
+import App from "./App";
+import { Store } from "./components/Context/StoreContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,6 +10,5 @@ ReactDOM.render(
       <App />
     </Store>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-

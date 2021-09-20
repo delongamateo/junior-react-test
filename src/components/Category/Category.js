@@ -7,7 +7,7 @@ import "./Category.scss";
 
 const getCategoryQuery = gql`
   query category($category: String!) {
-    category(input: {title: $category}) {
+    category(input: { title: $category }) {
       products {
         id
         name
@@ -35,7 +35,6 @@ const getCategoryQuery = gql`
 `;
 
 class Category extends Component {
-
   render() {
     const { selectedCategory } = this.context;
     return (

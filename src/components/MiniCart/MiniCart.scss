@@ -1,70 +1,68 @@
 .miniCart {
-    width: 325px;
-    padding: 15px;
-    margin-top: 80px;
-    background-color: white;
+  width: 325px;
+  padding: 15px;
+  margin-top: 80px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  position: absolute;
+  z-index: 10;
+
+  .miniCartTitle {
+    margin-bottom: 25px;
+
+    p {
+      font-weight: 700;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .miniCartTotal {
     display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    position: absolute;
-    z-index: 10;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 35px;
 
-    .miniCartTitle {
-        margin-bottom: 25px;
-
-        p {
-            font-weight: 700;
-
-            span {
-                font-weight: 500;
-                
-            }
-        }
+    .total {
+      font-weight: 500;
     }
 
-    .miniCartTotal {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: 35px;
+    .price {
+      font-weight: 700;
+    }
+  }
 
-        .total {
-            font-weight: 500;
-            
-        }
+  .miniCartButtons {
+    height: 43px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-        .price {
-            font-weight: 700;
-        }
+    .viewBag {
+      flex-grow: 1;
+      margin-right: 12px;
+      background: transparent;
+      border: 1px solid black;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: black;
     }
 
-    .miniCartButtons {
-        height: 43px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    
-        .viewBag {
-            flex-grow: 1;
-            margin-right: 12px;
-            background: transparent;
-            border: 1px solid black;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: black;
-        }
-
-        .checkout {
-            flex-grow: 1;
-            border: none;
-            background-color: #5ECE7B;
-            color: white;
-            font-weight: 600;
-            font-size: 14px;
-        }
+    .checkout {
+      flex-grow: 1;
+      border: none;
+      background-color: #5ece7b;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
     }
+  }
 }

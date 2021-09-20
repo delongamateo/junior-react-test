@@ -1,56 +1,56 @@
 .miniCartItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 35px;
+
+  .miniCartItemInfo {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .miniNameAndPrice {
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .miniCartItemPrice {
+        font-weight: 500;
+      }
+    }
+
+    .miniSizeButtons {
+      .size {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .miniQuantityAndImage {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 35px;
-    
-    .miniCartItemInfo {
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
 
-        .miniNameAndPrice {
-            height: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            .miniCartItemPrice {
-                font-weight: 500;
-            }
-        }
-
-        .miniSizeButtons {
-            .size {
-                margin-right: 8px;
-            }
-        }
+    .miniQuantity {
+      margin-right: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
     }
+  }
 
-    .miniQuantityAndImage {
-        display: flex;
-        flex-direction: row;
+  .miniSmallButton {
+    height: 24px;
+    width: 24px;
+    background: transparent;
+    border: 1px solid black;
+    font-size: 16px;
+  }
 
-        .miniQuantity {
-            margin-right: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-    }
-
-    .miniSmallButton {
-        height: 24px;
-        width: 24px;
-        background: transparent;
-        border: 1px solid black;
-        font-size: 16px;
-    }
-
-    .cartItemImage {
-        height: 100px;
-        width: 80px;
-    }
+  .cartItemImage {
+    height: 100px;
+    width: 80px;
+  }
 }

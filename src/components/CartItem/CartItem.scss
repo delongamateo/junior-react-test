@@ -1,67 +1,67 @@
 .cartItem {
-    height: 225px;
+  height: 225px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid rgba(187, 187, 187, 0.5);
+  padding: 20px 0;
+
+  .cartItemInfo {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .cartItemName {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .cartItemName2 {
+      font-size: 30px;
+      font-weight: 400;
+    }
+
+    .cartItemPrice {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .sizeButtons {
+      display: flex;
+      flex-direction: row;
+      .smallButtonSize {
+        height: 45px;
+        width: 63px;
+        background: transparent;
+        border: 1px solid black;
+        font-size: 16px;
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .quantityAndImage {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    border-top: 1px solid rgba(187, 187, 187, 0.5);
-    padding: 20px 0;
-    
-    .cartItemInfo {
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
 
-        .cartItemName {
-            font-size: 30px;
-            font-weight: 600;
-        }
+    .quantity {
+      margin-right: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
 
-        .cartItemName2 {
-            font-size: 30px;
-            font-weight: 400;
-        }
-
-        .cartItemPrice {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .sizeButtons {
-            display: flex;
-            flex-direction: row;
-            .smallButtonSize {
-                height: 45px;
-                width: 63px;
-                background: transparent;
-                border: 1px solid black;
-                font-size: 16px;
-                margin-right: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
+      .smallButton {
+        height: 45px;
+        width: 45px;
+        background: transparent;
+        border: 1px solid black;
+        font-size: 16px;
+      }
     }
-
-    .quantityAndImage {
-        display: flex;
-        flex-direction: row;
-
-        .quantity {
-            margin-right: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-
-            .smallButton {
-                height: 45px;
-                width: 45px;
-                background: transparent;
-                border: 1px solid black;
-                font-size: 16px;
-            }
-        }
-    }
+  }
 }

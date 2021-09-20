@@ -15,7 +15,8 @@ class CartItem extends Component {
               this.props.item.prices.find((price) => {
                 return price.currency === storeCurrency;
               }).amount
-            } {storeCurrency}
+            }{" "}
+            {storeCurrency}
           </p>
           <div className="sizeButtons">
             <div className="smallButtonSize">S</div>

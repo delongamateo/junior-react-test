@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import { sumBy } from "lodash";
 import "./Nav.scss";
 import StoreContext from "../Context/StoreContext";
 
@@ -15,7 +16,8 @@ const getCategoriesQuery = gql`
 
 class Nav extends Component {
   render() {
-    const { items, storeCurrency, selectedCategory, updateCategory } = this.context;
+    const { items, storeCurrency, selectedCategory, updateCategory } =
+      this.context;
     return (
       <nav>
         <div className="categories">
@@ -71,7 +73,9 @@ class Nav extends Component {
               className="cartNumber"
               style={{ display: items.length > 0 ? "flex" : "none" }}
             >
-              {items.length}
+              {sumBy(items, function (o) {
+                return o.quantity;
+              })}
             </div>
           </div>
         </div>
@@ -82,4 +86,4 @@ class Nav extends Component {
 
 Nav.contextType = StoreContext;
 
-export default graphql (getCategoriesQuery)(Nav);
+export default graphql(getCategoriesQuery)(Nav);

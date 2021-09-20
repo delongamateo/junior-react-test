@@ -30,18 +30,18 @@ const getProductQuery = gql`
 `;
 
 class Test extends Component {
-    render() {
-        console.log(this.props)
-        return (
-          <Query query={getProductQuery} variables={{ a: "ps-5" }}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error</p>;
-              return <p>a</p>;
-            }}
-          </Query>
-        );
-    }
+  render() {
+    console.log(this.props);
+    return (
+      <Query query={getProductQuery} variables={{ a: "ps-5" }}>
+        {({ loading, error, data }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Error</p>;
+          return <p>a</p>;
+        }}
+      </Query>
+    );
+  }
 }
 
 export default graphql(getProductQuery)(Test);

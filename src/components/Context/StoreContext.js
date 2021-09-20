@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {findIndex, isEqual, cloneDeep} from "lodash"
+import { findIndex, isEqual, cloneDeep } from "lodash";
 
 const StoreContext = React.createContext();
 
@@ -18,17 +18,22 @@ export class Store extends Component {
     console.log(item);
     this.setState((state) => {
       let items = cloneDeep(state.items);
-      console.log(items)
-      const index = findIndex(items, (currentItem) =>currentItem.id === item.id && isEqual(currentItem.attributes, item.attributes));
-      console.log(index)
+      console.log(items);
+      const index = findIndex(
+        items,
+        (currentItem) =>
+          currentItem.id === item.id &&
+          isEqual(currentItem.attributes, item.attributes)
+      );
+      console.log(index);
       if (index > -1) {
-        items[index].quantity++
+        items[index].quantity++;
       } else {
-        items = items.concat({...item, quantity: 1});
+        items = items.concat({ ...item, quantity: 1 });
       }
       console.log(items);
       return {
-        items
+        items,
       };
     });
   };
@@ -43,18 +48,6 @@ export class Store extends Component {
       this.setState(newItems);
     }
   };
-
-  /* selectOption = (item, selectedAttribute, value) => {
-    const attributesIndex = item.attributes.findIndex(
-      (attribute) => attribute.id === selectedAttribute
-    );
-
-    const itemsIndex = item.attributes[attributesIndex].items.findIndex(
-      (item) => item.id === value
-    );
-
-    console.log(itemsIndex);
-  }; */
 
   updateCategory = (category) => {
     console.log(category);

@@ -5,7 +5,7 @@ import "./ProductCard.scss";
 
 class ProductCard extends Component {
   render() {
-    const {storeCurrency} = this.context;
+    const { storeCurrency } = this.context;
     return (
       <Link
         to={`/productpage/${this.props.product.id}`}
@@ -15,9 +15,12 @@ class ProductCard extends Component {
         <img src="./images/Circle Icon.png" className="circleIcon" />
         <p className="productTitle">{this.props.product.name}</p>
         <p className="productPrice">
-          {this.props.product.prices.find((price) => {
-            return price.currency === storeCurrency;
-          }).amount} {storeCurrency}
+          {
+            this.props.product.prices.find((price) => {
+              return price.currency === storeCurrency;
+            }).amount
+          }{" "}
+          {storeCurrency}
         </p>
       </Link>
     );
