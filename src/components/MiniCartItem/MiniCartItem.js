@@ -41,11 +41,18 @@ class MiniCartItem extends Component {
                     {storeCurrency}
                   </p>
                 </div>
-                <div className="miniSizeButtons">
-                  {Object.values(this.props.item.attributes).map((attribute, i) => (
-                     <div className="miniSmallButton">{attribute}</div>
-                  ))
-                  }
+                <div className="attributes">
+                  {Object.values(this.props.item.attributes).map(
+                    (attribute, i) => (
+                      <div
+                        className="attribute"
+                        style={{ backgroundColor: attribute.startsWith("#") ? attribute : "white" }}
+                        key={i}
+                      >
+                        {attribute.startsWith("#") ? "" : attribute}
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
               <div className="miniQuantityAndImage">

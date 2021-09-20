@@ -27,16 +27,17 @@
       font-weight: 700;
     }
 
-    .sizeButtons {
+    .attributes {
       display: flex;
       flex-direction: row;
-      .smallButtonSize {
+      
+      .attribute {
         height: 45px;
-        width: 63px;
+        min-width: 45px;
         background: transparent;
         border: 1px solid black;
         font-size: 16px;
-        margin-right: 12px;
+        margin-right: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -62,6 +63,10 @@
         border: 1px solid black;
         font-size: 16px;
       }
+    }
+
+    .cartitemimg {
+      width: 150px;
     }
   }
 }

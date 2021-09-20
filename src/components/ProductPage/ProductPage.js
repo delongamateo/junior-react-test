@@ -91,12 +91,12 @@ class ProductPage extends Component {
                     <h2 className="productPageTitle2">{data.product.brand}</h2>
                   </div>
                   {data.product.attributes?.map((attribute, i) => (
-                    <div className="productSizeContainer" key={i}>
-                      <p className="productSize">{attribute.name}:</p>
-                      <div className="productSizeButtons">
+                    <div className="productAttributesContainer" key={i}>
+                      <p className="productAttribute">{attribute.name}:</p>
+                      <div className="productAttributeButtons">
                         {attribute.items.map((item, i) => (
                           <button
-                            className="sizeButton"
+                            className="attributeButton"
                             key={i}
                             style={{
                               backgroundColor:

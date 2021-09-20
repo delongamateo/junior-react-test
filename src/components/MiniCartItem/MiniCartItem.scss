@@ -21,9 +21,19 @@
       }
     }
 
-    .miniSizeButtons {
-      .size {
-        margin-right: 8px;
+    .attributes {
+      display: flex;
+      flex-direction: row;
+      
+      .attribute {
+        height: 24px;
+        min-width: 24px;
+        background: transparent;
+        border: 1px solid black;
+        font-size: 16px;
+        text-align: center;
+        margin-right: 5px;
+        padding: 2px;
       }
     }
   }
@@ -38,17 +48,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+
+      .miniSmallButton {
+        height: 24px;
+        width: 24px;
+        background: transparent;
+        border: 1px solid black;
+        font-size: 16px;
+        padding: 2px;
+      }
     }
   }
-
-  .miniSmallButton {
-    height: 24px;
-    width: 24px;
-    background: transparent;
-    border: 1px solid black;
-    font-size: 16px;
-  }
-
+  
   .cartItemImage {
     height: 100px;
     width: 80px;
