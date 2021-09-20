@@ -55,6 +55,7 @@ class App extends Component {
                 showCurrenciesPicker={this.showCurrenciesPicker}
                 currenciesPicker={this.state.currenciesPicker}
               />
+              {this.state.miniCart && <div className="overlay"></div>}
               {this.state.currenciesPicker && (
                 <CurrenciesPicker
                   changeCurrency={this.changeCurrency}
@@ -66,7 +67,7 @@ class App extends Component {
               )}
               <Switch>
                 <Route exact path={`/${selectedCategory}`}>
-                  <Category miniCart={this.state.miniCart} />
+                  <Category />
                 </Route>
                 <Route exact path="/productpage/:id">
                   <ProductPage />

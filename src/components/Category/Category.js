@@ -39,7 +39,6 @@ class Category extends Component {
     const { selectedCategory } = this.context;
     return (
       <div className="categoryContainer">
-        {this.props.miniCart && <div className="overlay"></div>}
         <h1 className="categoryTitle">
           {selectedCategory === "" ? "all" : selectedCategory}
         </h1>
