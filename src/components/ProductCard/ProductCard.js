@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import StoreContext from "../Context/StoreContext";
 import "./ProductCard.scss";
+import circleIcon from "../../images/circleIcon.png"
 
 class ProductCard extends Component {
   render() {
@@ -18,7 +19,7 @@ class ProductCard extends Component {
               className="productImage"
               alt=""
             />
-            <img src="./images/Circle Icon.png" className="circleIcon" alt="" />
+            <img src={circleIcon} className="circleIcon" alt="" />
             <p className="productTitle">{this.props.product.name}</p>
             <p className="productPrice">
               {

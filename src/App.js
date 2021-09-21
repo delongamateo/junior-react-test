@@ -9,7 +9,6 @@ import Nav from "./components/Nav/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import Test from "./components/Test";
 import StoreContext from "./components/Context/StoreContext";
 
 const client = new ApolloClient({
@@ -25,7 +24,7 @@ class App extends Component {
     };
   }
 
-  showMiniCart = () => {
+  toggleMiniCart = () => {
     if (this.state.miniCart === false) {
       this.setState({ miniCart: true });
       this.setState({ currenciesPicker: false });
@@ -34,7 +33,7 @@ class App extends Component {
     }
   };
 
-  showCurrenciesPicker = () => {
+  toggleCurrenciesPicker = () => {
     if (this.state.currenciesPicker === false) {
       this.setState({ currenciesPicker: true });
       this.setState({ miniCart: false });
@@ -51,19 +50,19 @@ class App extends Component {
           <div className="app">
             <div className="container">
               <Nav
-                showMiniCart={this.showMiniCart}
-                showCurrenciesPicker={this.showCurrenciesPicker}
+                toggleMiniCart={this.toggleMiniCart}
+                toggleCurrenciesPicker={this.toggleCurrenciesPicker}
                 currenciesPicker={this.state.currenciesPicker}
               />
               {this.state.miniCart && <div className="overlay"></div>}
               {this.state.currenciesPicker && (
                 <CurrenciesPicker
                   changeCurrency={this.changeCurrency}
-                  showCurrenciesPicker={this.showCurrenciesPicker}
+                  toggleCurrenciesPicker={this.toggleCurrenciesPicker}
                 />
               )}
               {this.state.miniCart && (
-                <MiniCart showMiniCart={this.showMiniCart} />
+                <MiniCart toggleMiniCart={this.toggleMiniCart} />
               )}
               <Switch>
                 <Route exact path={`/${selectedCategory}`}>

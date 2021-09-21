@@ -17,6 +17,10 @@
       margin-bottom: 32px;
       cursor: pointer;
     }
+
+    .selectedImage {
+      border: 1px solid black;
+    }
   }
 
   .productImage {
@@ -70,8 +74,8 @@
           cursor: pointer;
         }
 
-        .selected {
-          color: #5ece7b;
+        .selectedAttribute {
+          border: 3px solid black;
         }
       }
     }

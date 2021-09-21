@@ -5,6 +5,10 @@ import { graphql } from "react-apollo";
 import { sumBy } from "lodash";
 import "./Nav.scss";
 import StoreContext from "../Context/StoreContext";
+import logo from "../../images/logo.png";
+import emptyCart from "../../images/emptyCart.png";
+import down from "../../images/down.png";
+import up from "../../images/up.png";
 
 const getCategoriesQuery = gql`
   {
@@ -46,29 +50,25 @@ class Nav extends Component {
           ))}
         </div>
         <div className="logoContainer">
-          <img src="./images/a-logo.png" alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <div className="currencyAndCart">
           <div
             className="navCurrencyContainer"
-            onClick={() => this.props.showCurrenciesPicker()}
+            onClick={() => this.props.toggleCurrenciesPicker()}
           >
             <p className="storeCurrency">{storeCurrency}</p>
             <img
-              src={
-                this.props.currenciesPicker
-                  ? "./images/up.png"
-                  : "./images/down.png"
-              }
+              src={this.props.currenciesPicker ? up : down}
               alt="arrow"
               className="arrow"
             />
           </div>
           <div
             className="navCartContainer"
-            onClick={() => this.props.showMiniCart()}
+            onClick={() => this.props.toggleMiniCart()}
           >
-            <img src="./images/Empty Cart.png" alt="cart" className="cart" />
+            <img src={emptyCart} alt="cart" className="cart" />
             <div
               className="cartNumber"
               style={{ display: items.length > 0 ? "flex" : "none" }}

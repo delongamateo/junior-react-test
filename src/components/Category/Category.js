@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { gql } from "apollo-boost";
-import { graphql, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import StoreContext from "../Context/StoreContext";
 import "./Category.scss";
 

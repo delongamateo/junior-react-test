@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import StoreContext from "../Context/StoreContext";
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
-import { forIn } from "lodash";
 import "./MiniCartItem.scss";
 
 const getProductQuery = gql`
@@ -46,7 +45,11 @@ class MiniCartItem extends Component {
                     (attribute, i) => (
                       <div
                         className="attribute"
-                        style={{ backgroundColor: attribute.startsWith("#") ? attribute : "white" }}
+                        style={{
+                          backgroundColor: attribute.startsWith("#")
+                            ? attribute
+                            : "white",
+                        }}
                         key={i}
                       >
                         {attribute.startsWith("#") ? "" : attribute}

@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
 import StoreContext from "../Context/StoreContext";
-import { assign, keysIn } from "lodash";
+import { assign, keysIn, indexOf } from "lodash";
 import "./ProductPage.scss";
 
 const getProductQuery = gql`
@@ -74,7 +74,11 @@ class ProductPage extends Component {
                   {data.product.gallery.map((image, i) => (
                     <img
                       src={image}
-                      className="sideImage"
+                      className={
+                        indexOf(data.product.gallery, image) === this.state.img
+                          ? "sideImage selectedImage"
+                          : "sideImage"
+                      }
                       alt="sideimage"
                       key={i}
                       onClick={() => this.changeImage(i)}
@@ -97,7 +101,12 @@ class ProductPage extends Component {
                       <div className="productAttributeButtons">
                         {attribute.items.map((item, i) => (
                           <button
-                            className="attributeButton"
+                            className={
+                              this.state.selection[attribute.name] ===
+                              item.value
+                                ? "attributeButton selectedAttribute"
+                                : "attributeButton"
+                            }
                             key={i}
                             style={{
                               backgroundColor:
@@ -130,6 +139,7 @@ class ProductPage extends Component {
                   <button
                     className="productAddToCart"
                     onClick={() => {
+                      console.log(data.product.prices);
                       if (
                         keysIn(this.state.selection).length ===
                         data.product.attributes.length
