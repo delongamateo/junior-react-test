@@ -39,14 +39,20 @@ export class Store extends Component {
   };
 
   removeItem = (item) => {
-    const newItems = this.state.items;
-    const indexOfItem = this.state.items.findIndex(
-      (product) => product.id === item.id
-    );
-    if (indexOfItem > -1) {
-      newItems.splice(indexOfItem, 1);
-      this.setState(newItems);
+    console.log(item);
+    let newItems = cloneDeep(this.state.items);
+    console.log(newItems);
+    for (let i = 0; i < newItems.length; i++) {
+      if (isEqual(item, newItems[i])) {
+        if (newItems[i].quantity > 1) {
+          newItems[i].quantity = newItems[i].quantity - 1;
+        } else {
+          let index = findIndex(newItems, newItems[i]);
+          newItems.splice(index, 1);
+        }
+      }
     }
+    this.setState({ items: newItems });
   };
 
   updateCategory = (category) => {
