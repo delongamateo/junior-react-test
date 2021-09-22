@@ -20,7 +20,7 @@ class CurrenciesPicker extends Component {
             className="currency"
             onClick={() => {
               changeCurrency(currency);
-              this.props.showCurrenciesPicker();
+              this.props.toggleCurrenciesPicker();
             }}
             key={i}
           >

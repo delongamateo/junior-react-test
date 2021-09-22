@@ -9,17 +9,26 @@ class MiniCart extends Component {
   render() {
     const { items, storeCurrency } = this.context;
 
+    const totalCartAmount =
+      Math.round(
+        (items.reduce((acc, item) => {
+          acc =
+            acc +
+            item.prices.find((price) => {
+              return price.currency === storeCurrency;
+            }).amount *
+              item.quantity;
+          return acc;
+        }, 0) +
+          Number.EPSILON) *
+          100
+      ) / 100;
+
     return (
       <div className="miniCart">
         <div className="miniCartTitle">
           <p>
-            My Bag,{" "}
-            <span>
-              {sumBy(items, function (o) {
-                return o.quantity;
-              })}{" "}
-              items
-            </span>
+            My Bag, <span>{sumBy(items, "quantity")} items</span>
           </p>
         </div>
         {items.map((item, i) => (
@@ -28,19 +37,7 @@ class MiniCart extends Component {
         <div className="miniCartTotal">
           <p className="total">Total</p>
           <p className="price">
-            {Math.round(
-              (items.reduce((acc, item) => {
-                acc =
-                  acc +
-                  item.prices.find((price) => {
-                    return price.currency === storeCurrency;
-                  }).amount *
-                    item.quantity;
-                return acc;
-              }, 0) +
-                Number.EPSILON) *
-                100
-            ) / 100}{" "}
+            {totalCartAmount}
             {storeCurrency}
           </p>
         </div>
@@ -49,7 +46,7 @@ class MiniCart extends Component {
             to="/cart"
             className="viewBag"
             onClick={() => {
-              this.props.showMiniCart();
+              this.props.toggleMiniCart();
             }}
           >
             VIEW BAG

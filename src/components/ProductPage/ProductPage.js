@@ -50,11 +50,9 @@ class ProductPage extends Component {
   };
 
   addSelection = (key, value) => {
-    console.log(this.state);
     this.setState({
       selection: assign(this.state.selection, { [key]: value }),
     });
-    console.log(this.state);
   };
 
   render() {
@@ -139,7 +137,6 @@ class ProductPage extends Component {
                   <button
                     className="productAddToCart"
                     onClick={() => {
-                      console.log(data.product.prices);
                       if (
                         keysIn(this.state.selection).length ===
                         data.product.attributes.length

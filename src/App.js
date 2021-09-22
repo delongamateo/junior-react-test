@@ -57,7 +57,6 @@ class App extends Component {
               {this.state.miniCart && <div className="overlay"></div>}
               {this.state.currenciesPicker && (
                 <CurrenciesPicker
-                  changeCurrency={this.changeCurrency}
                   toggleCurrenciesPicker={this.toggleCurrenciesPicker}
                 />
               )}
