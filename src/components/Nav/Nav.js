@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-import { gql } from "apollo-boost";
+import { getCategoriesQuery } from "../../GraphQL/Queries";
 import { graphql } from "react-apollo";
 import { sumBy } from "lodash";
 import "./Nav.scss";
@@ -10,15 +10,7 @@ import emptyCart from "../../images/emptyCart.png";
 import down from "../../images/down.png";
 import up from "../../images/up.png";
 
-const getCategoriesQuery = gql`
-  {
-    categories {
-      name
-    }
-  }
-`;
-
-class Nav extends Component {
+class Nav extends PureComponent {
   render() {
     const { items, storeCurrency, selectedCategory, updateCategory } =
       this.context;

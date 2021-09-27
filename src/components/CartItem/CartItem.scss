@@ -17,7 +17,7 @@
       font-weight: 600;
     }
 
-    .cartItemName2 {
+    .cartItemBrand {
       font-size: 30px;
       font-weight: 400;
     }
@@ -30,7 +30,7 @@
     .attributes {
       display: flex;
       flex-direction: row;
-      
+
       .attribute {
         height: 45px;
         min-width: 45px;
@@ -65,8 +65,15 @@
       }
     }
 
-    .cartitemimg {
-      width: 150px;
+    .imgContainer {
+      height: 185px;
+      width: 141px;
+
+      .cartitemimg {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

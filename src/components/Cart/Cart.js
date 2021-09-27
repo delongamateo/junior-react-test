@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import CartItem from "../CartItem/CartItem";
 import StoreContext from "../Context/StoreContext";
 import "./Cart.scss";
 
-class Cart extends Component {
+class Cart extends PureComponent {
   render() {
     const { items } = this.context;
 

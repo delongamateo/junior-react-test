@@ -1,39 +1,11 @@
 import React, { Component } from "react";
-import { gql } from "apollo-boost";
+import { getProductQuery } from "../../GraphQL/Queries";
 import { Query } from "react-apollo";
 import { withRouter } from "react-router";
 import ReactHtmlParser from "react-html-parser";
 import StoreContext from "../Context/StoreContext";
 import { assign, keysIn, indexOf } from "lodash";
 import "./ProductPage.scss";
-
-const getProductQuery = gql`
-  query product($id: String!) {
-    product(id: $id) {
-      id
-      name
-      inStock
-      gallery
-      description
-      category
-      attributes {
-        id
-        name
-        type
-        items {
-          displayValue
-          value
-          id
-        }
-      }
-      prices {
-        currency
-        amount
-      }
-      brand
-    }
-  }
-`;
 
 class ProductPage extends Component {
   constructor(props) {
@@ -83,11 +55,16 @@ class ProductPage extends Component {
                     />
                   ))}
                 </div>
-                <img
-                  src={data.product.gallery[this.state.img]}
-                  className="productImage"
-                  alt="mainimage"
-                />
+                <div className="imgContainer">
+                  {data.product.inStock === false && (
+                    <p className="outOfStock">OUT OF STOCK</p>
+                  )}
+                  <img
+                    src={data.product.gallery[this.state.img]}
+                    className="productImage"
+                    alt="mainimage"
+                  />
+                </div>
                 <div className="productDetails">
                   <div className="titleContainer">
                     <h2 className="productPageTitle">{data.product.name}</h2>
@@ -137,7 +114,11 @@ class ProductPage extends Component {
                   <button
                     className="productAddToCart"
                     onClick={() => {
-                      if (
+                      if (data.product.inStock === false) {
+                        this.setState({
+                          error: "Product out of stock",
+                        });
+                      } else if (
                         keysIn(this.state.selection).length ===
                         data.product.attributes.length
                       ) {

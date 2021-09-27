@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import StoreContext from "../Context/StoreContext";
 import "./ProductCard.scss";
-import circleIcon from "../../images/circleIcon.png"
+import circleIcon from "../../images/circleIcon.png";
 
-class ProductCard extends Component {
+class ProductCard extends PureComponent {
   render() {
     const { storeCurrency } = this.context;
     return (
@@ -14,11 +14,13 @@ class ProductCard extends Component {
             to={`/productpage/${this.props.product.id}`}
             className="cardContainer"
           >
-            <img
-              src={this.props.product.gallery[0]}
-              className="productImage"
-              alt=""
-            />
+            <div className="imgContainer">
+              <img
+                src={this.props.product.gallery[0]}
+                className="productImage"
+                alt=""
+              />
+            </div>
             <img src={circleIcon} className="circleIcon" alt="" />
             <p className="productTitle">{this.props.product.name}</p>
             <p className="productPrice">
@@ -31,14 +33,21 @@ class ProductCard extends Component {
             </p>
           </Link>
         ) : (
-          <div className="outOfStock">
+          <Link
+            to={`/productpage/${this.props.product.id}`}
+            className="outOfStock"
+          >
             <div className="imageOutOfStock">
-              <div className="outOfStockText"><p>OUT OF STOCK</p></div>
-              <img
-                src={this.props.product.gallery[0]}
-                className="productImage"
-                alt=""
-              />
+              <div className="outOfStockText">
+                <p>OUT OF STOCK</p>
+              </div>
+              <div className="imgContainer">
+                <img
+                  src={this.props.product.gallery[0]}
+                  className="productImage"
+                  alt=""
+                />
+              </div>
             </div>
             <p className="productTitle">{this.props.product.name}</p>
             <p className="productPrice">
@@ -49,7 +58,7 @@ class ProductCard extends Component {
               }{" "}
               {storeCurrency}
             </p>
-          </div>
+          </Link>
         )}
       </>
     );

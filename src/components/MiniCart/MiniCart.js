@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import MiniCartItem from "../MiniCartItem/MiniCartItem";
 import { Link } from "react-router-dom";
 import StoreContext from "../Context/StoreContext";
 import { sumBy } from "lodash";
 import "./MiniCart.scss";
 
-class MiniCart extends Component {
+class MiniCart extends PureComponent {
   render() {
     const { items, storeCurrency } = this.context;
 

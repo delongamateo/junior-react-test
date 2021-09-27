@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./App.scss";
 import MiniCart from "./components/MiniCart/MiniCart";
 import CurrenciesPicker from "./components/CurrenciesPicker/CurrenciesPicker";
@@ -15,7 +15,7 @@ const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
 });
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

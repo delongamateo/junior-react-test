@@ -1,40 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { gql } from "apollo-boost";
+import { getCategoryQuery } from "../../GraphQL/Queries";
 import { Query } from "react-apollo";
 import StoreContext from "../Context/StoreContext";
 import "./Category.scss";
 
-const getCategoryQuery = gql`
-  query category($category: String!) {
-    category(input: { title: $category }) {
-      products {
-        id
-        name
-        inStock
-        gallery
-        description
-        attributes {
-          id
-          name
-          type
-          items {
-            displayValue
-            value
-            id
-          }
-        }
-        prices {
-          currency
-          amount
-        }
-        brand
-      }
-    }
-  }
-`;
-
-class Category extends Component {
+class Category extends PureComponent {
   render() {
     const { selectedCategory } = this.context;
     return (

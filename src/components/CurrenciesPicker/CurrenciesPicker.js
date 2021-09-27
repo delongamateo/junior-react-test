@@ -1,16 +1,10 @@
-import React, { Component } from "react";
-import { gql } from "apollo-boost";
+import React, { PureComponent } from "react";
+import { getCurrenciesQuery } from "../../GraphQL/Queries";
 import { graphql } from "react-apollo";
 import StoreContext from "../Context/StoreContext";
 import "./CurrenciesPicker.scss";
 
-const getCurrenciesQuery = gql`
-  {
-    currencies
-  }
-`;
-
-class CurrenciesPicker extends Component {
+class CurrenciesPicker extends PureComponent {
   render() {
     const { changeCurrency } = this.context;
     return (

@@ -1,25 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import StoreContext from "../Context/StoreContext";
-import { gql } from "apollo-boost";
+import { getProductQuery } from "../../GraphQL/Queries";
 import { Query } from "react-apollo";
 import "./CartItem.scss";
 
-const getProductQuery = gql`
-  query product($id: String!) {
-    product(id: $id) {
-      id
-      name
-      gallery
-      prices {
-        currency
-        amount
-      }
-      brand
-    }
-  }
-`;
-
-class CartItem extends Component {
+class CartItem extends PureComponent {
   render() {
     const { addItem, removeItem, storeCurrency } = this.context;
     return (
@@ -31,7 +16,7 @@ class CartItem extends Component {
             <div className="cartItem">
               <div className="cartItemInfo">
                 <p className="cartItemName">{data.product.name}</p>
-                <p className="cartItemName2">{data.product.brand}</p>
+                <p className="cartItemBrand">{data.product.brand}</p>
                 <p className="cartItemPrice">
                   {
                     data.product.prices.find((price) => {
@@ -74,11 +59,13 @@ class CartItem extends Component {
                     -
                   </button>
                 </div>
-                <img
-                  src={data.product.gallery[0]}
-                  alt="cartitemimg"
-                  className="cartitemimg"
-                />
+                <div className="imgContainer">
+                  <img
+                    src={data.product.gallery[0]}
+                    alt="cartitemimg"
+                    className="cartitemimg"
+                  />
+                </div>
               </div>
             </div>
           );
